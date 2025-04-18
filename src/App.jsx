@@ -73,7 +73,7 @@ function App() {
     try {
       const categoryQuery = categoryKeywords[category][language];
       const query = selectedState ? `${categoryQuery} ${selectedState}` : categoryQuery;
-      const apiKey = import.meta.env.VITE_NEWS_API_KEY;
+      const apiKey = import.meta.env.VITE_NEWS_API;
   
       const res = await axios.get(
         `https://newsapi.org/v2/everything?q=${query}&language=${language}&sortBy=publishedAt&apiKey=${apiKey}`
