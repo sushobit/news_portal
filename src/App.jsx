@@ -67,14 +67,16 @@ function App() {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
+
   const fetchNews = async () => {
     setLoading(true);
     try {
       const categoryQuery = categoryKeywords[category][language];
       const query = selectedState ? `${categoryQuery} ${selectedState}` : categoryQuery;
+      const apiKey = import.meta.env.VITE_NEWS_API_KEY;
+  
       const res = await axios.get(
-        // API Key
-        `https://newsapi.org/v2/everything?q=${query}&language=${language}&sortBy=publishedAt&apiKey=a0cc21fd25cb4e869a6b59871e762494`
+        `https://newsapi.org/v2/everything?q=${query}&language=${language}&sortBy=publishedAt&apiKey=${apiKey}`
       );
       setArticles(res.data.articles);
     } catch (err) {
@@ -82,6 +84,7 @@ function App() {
     }
     setLoading(false);
   };
+  
 
   useEffect(() => {
     fetchNews();
